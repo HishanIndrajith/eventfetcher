@@ -51,7 +51,7 @@ public class Application
 			);
 			ResponseEventBriteAPI response1 = response.getBody();
 			for( EventEventBriteAPI event : response1.getEvents()){
-				System.out.println("size = " + event.getSummary());
+				System.out.println("size = " + event.getName());;
 			}
 			log.info( response1.toString() );
 		};
