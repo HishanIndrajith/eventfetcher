@@ -1,0 +1,4 @@
+
+jsquid:S00112#"FDefine and throw a dedicated exception instead of using a generic one.(×“Ó‡úÿÿÿÿ8¹³úï-
+Ssquid:UselessImportCheck")Remove this unused import 'models.Quote'.(ßŠÛ,8‚º¹ğ-
+©%squid:RedundantThrowsDeclarationCheck#"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(×“Ó‡úÿÿÿÿ8…¹ğ-
