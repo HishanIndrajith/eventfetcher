@@ -1,76 +1,79 @@
 package models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaginationEventBriteAPI
 {
-	private int object_count;
-	private int page_number;
-	private int page_size;
-	private int page_count;
-	private boolean has_more_items;
+
+	private int objectCount;
+	private int pageNumber;
+	private int pageSize;
+	private int pageCount;
+	private boolean hasMoreItems;
 
 	public PaginationEventBriteAPI()
 	{
+		//default constructor
 	}
 
-	public PaginationEventBriteAPI( int object_count, int page_number, int page_size, int page_count,
-			boolean has_more_items )
+	@SuppressWarnings("unchecked")
+	@JsonProperty("object_count")
+	public void setObjectCount( int objectCount )
 	{
-		this.object_count = object_count;
-		this.page_number = page_number;
-		this.page_size = page_size;
-		this.page_count = page_count;
-		this.has_more_items = has_more_items;
+		this.objectCount = objectCount;
 	}
 
-	public int getObject_count()
+	@SuppressWarnings("unchecked")
+	@JsonProperty("page_number")
+	public void setPageNumber( int pageNumber )
 	{
-		return object_count;
+		this.pageNumber = pageNumber;
 	}
 
-	public void setObject_count( int object_count )
+	@SuppressWarnings("unchecked")
+	@JsonProperty("page_size")
+	public void setPageSize( int pageSize )
 	{
-		this.object_count = object_count;
+		this.pageSize = pageSize;
 	}
 
-	public int getPage_number()
+	@SuppressWarnings("unchecked")
+	@JsonProperty("page_count")
+	public void setPageCount( int pageCount )
 	{
-		return page_number;
+		this.pageCount = pageCount;
 	}
 
-	public void setPage_number( int page_number )
+	@SuppressWarnings("unchecked")
+	@JsonProperty("has_more_items")
+	public void setHasMoreItems( boolean hasMoreItems )
 	{
-		this.page_number = page_number;
+		this.hasMoreItems = hasMoreItems;
 	}
 
-	public int getPage_size()
+	public int getObjectCount()
 	{
-		return page_size;
+		return objectCount;
 	}
 
-	public void setPage_size( int page_size )
+	public int getPageNumber()
 	{
-		this.page_size = page_size;
+		return pageNumber;
 	}
 
-	public int getPage_count()
+	public int getPageSize()
 	{
-		return page_count;
+		return pageSize;
 	}
 
-	public void setPage_count( int page_count )
+	public int getPageCount()
 	{
-		this.page_count = page_count;
+		return pageCount;
 	}
 
-	public boolean isHas_more_items()
+	public boolean isHasMoreItems()
 	{
-		return has_more_items;
-	}
-
-	public void setHas_more_items( boolean has_more_items )
-	{
-		this.has_more_items = has_more_items;
+		return hasMoreItems;
 	}
 }

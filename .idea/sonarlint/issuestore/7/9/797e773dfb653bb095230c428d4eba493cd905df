@@ -1,0 +1,27 @@
+
+isquid:S00117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë½ÌÃ
+isquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä¾Æü
+nsquid:S001174"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ü˜äèýÿÿÿÿ
+tsquid:S00116"WRename this field "object_count" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æÝ€ãùÿÿÿÿ
+ksquid:S00100>"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€èÈßÿÿÿÿÿ
+ssquid:S00116"VRename this field "page_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á©›ýÿÿÿÿ
+ksquid:S00100C"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¯©©þÿÿÿÿ
+ksquid:S00100H"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊŽâÑûÿÿÿÿ
+ksquid:S00100%"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§Í¦ýþÿÿÿÿ
+fsquid:S00100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦ˆÇ¥
+isquid:S00117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦ˆÇ¥
+qsquid:S00116	"TRename this field "page_size" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ‘¾ úÿÿÿÿ
+vsquid:S00116"YRename this field "has_more_items" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ý’±¤øÿÿÿÿ
+ksquid:S001004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ü˜äèýÿÿÿÿ
+isquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä¾Æü
+fsquid:S00100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë½ÌÃ
+isquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä¾Æü
+ksquid:S00100/"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ„áñýÿÿÿÿ
+rsquid:S00116
+"URename this field "page_count" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š—Ñêûÿÿÿÿ
+nsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©†àŒøÿÿÿÿ
+ksquid:S001009"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê×Ýáþÿÿÿÿ
+esquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïˆá
+isquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä¾Æü
+nsquid:S00117>"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€èÈßÿÿÿÿÿ
+nsquid:S00117H"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊŽâÑûÿÿÿÿ
