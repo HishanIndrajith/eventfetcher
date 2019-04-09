@@ -1,4 +1,5 @@
-package net.codegen.models;
+package net.codegen.models.event_brite_api;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

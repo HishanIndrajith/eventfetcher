@@ -1,24 +1,31 @@
-package net.codegen.models;
+package net.codegen.models.event_brite_api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import net.codegen.models.Event;
 
 import javax.persistence.*;
 import java.util.Map;
 
-
+@Entity
+@Table(name = "event")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EventEventBriteAPI extends Event
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int eventId;
 	private String city;
+	@Column(length = 1000)
 	private String name;
+	@Lob
 	private String description;
 	private String url;
 	private String startDate; //UTC
 	private String endDate;  //UTC
 	private String venueLatitude;
 	private String venueLongitude;
+	@Column(length = 2000)
 	private String venueAddress;
 
 	public EventEventBriteAPI()
@@ -79,6 +86,7 @@ public class EventEventBriteAPI extends Event
 		this.venueLongitude = ( String ) venue.get( "latitude" );
 		Map<String, String> address = ( Map<String, String> ) venue.get( "address" );
 		this.venueAddress = address.get( "localized_address_display" );
+		this.city = ResponseEventBriteAPI.getCityIndex() == 0 ? "Melbourne" : "Brisbane";
 	}
 
 	public String getCity()

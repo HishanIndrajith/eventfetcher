@@ -1,7 +1,10 @@
 package net.codegen.shedulars;
 
 import net.codegen.models.Event;
-import net.codegen.models.ResponseEventBriteAPI;
+import net.codegen.models.event_brite_api.EventEventBriteAPI;
+import net.codegen.models.event_brite_api.ResponseEventBriteAPI;
+import net.codegen.models.event_ful_api.EventEventFulAPI;
+import net.codegen.models.event_ful_api.ResponseEventFulAPI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +13,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import net.codegen.services.EventService;
-
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -24,9 +25,36 @@ public class SheduledEventAPIClient
 	@Autowired
 	EventService eventService;
 
+	//Full event List for a single save operation
+	private static List <Event> eventList = null;
+
+	// static method to create instance of Singleton class
+	//Singleton pattern used for eventlist as same object can be used again and again.
+	public static List <Event> getEventList()
+	{
+		if (eventList == null)
+			eventList = new ArrayList<>();
+		return eventList;
+	}
+
+//	//Full event List for a single save operation
+//	private static List <Event> eventList = null;
+//
+//	// static method to create instance of Singleton class
+//	//Singleton pattern used for eventlist as same object can be used again and again.
+//	public static List <Event> getEventList()
+//	{
+//		if (eventList == null)
+//			eventList = new ArrayList<>();
+//		return eventList;
+//	}
+
 	private static final Logger log = LoggerFactory.getLogger(SheduledEventAPIClient.class);
 
-	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	static{
+		//implement the array list
+		eventList = getEventList();
+	}
 
 	/*
 	https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html
@@ -38,9 +66,19 @@ public class SheduledEventAPIClient
 	*/
 	@Scheduled(cron = "0 * * * * *")
 	public void reportCurrentTime() {
-		log.info("The time is now {}", dateFormat.format(new Date()));
+		log.info("starting");
+		List<EventEventBriteAPI> eventListFromEventBriteAPIForMelbourne = getEventsListFromEventBriteAPI(0);
+
+		eventList.addAll(eventListFromEventBriteAPIForMelbourne);
+		eventService.insertEvent( eventList );
+		log.info("Successfully updated the database");
+	}
 
 
+	private List<EventEventBriteAPI> getEventsListFromEventBriteAPI(int cityIndex){
+		//cityIndex is 0 if Melbourne and 1 if Brisbane
+		ResponseEventBriteAPI.setCityIndex( cityIndex );
+		String cityName = cityIndex==0?"melbourne":"brisbane";
 		String authToken = "OYPUWKNJCVLUGYVQCPKH";
 
 		HttpHeaders headers = new HttpHeaders();
@@ -50,7 +88,7 @@ public class SheduledEventAPIClient
 
 
 		ResponseEntity<ResponseEventBriteAPI> initialResponseEntity = restTemplate.exchange(
-				"https://www.eventbriteapi.com/v3/events/search?location.address=melbourne&expand=venue&page=1",
+				"https://www.eventbriteapi.com/v3/events/search?location.address="+cityName+"&expand=venue&page=1",
 				HttpMethod.GET,
 				new HttpEntity<>("parameters", headers),
 				ResponseEventBriteAPI.class
@@ -58,8 +96,7 @@ public class SheduledEventAPIClient
 		ResponseEventBriteAPI initialResponse = initialResponseEntity.getBody();
 		int pageCount = initialResponse.getPagination().getPageCount();
 		System.out.println("page count "+pageCount);
-		List<Event> events = initialResponse.getEvents();
-		eventService.insertEvent(events);
+		List<EventEventBriteAPI> events = initialResponse.getEvents();
 		for(int i=1;i<pageCount;i++){
 			System.out.println("sending for page "+i);
 			ResponseEntity<ResponseEventBriteAPI> responseEntity = restTemplate.exchange(
@@ -69,9 +106,15 @@ public class SheduledEventAPIClient
 					ResponseEventBriteAPI.class
 			);
 			ResponseEventBriteAPI response = responseEntity.getBody();
-			eventService.insertEvent( response.getEvents() );
+			List<EventEventBriteAPI> nextEventsList = response.getEvents();
+			events.addAll(nextEventsList);
 		}
+		return events;
+	}
 
-		log.info("Successfully updated the database");
+	private void getEventsListFromEventFulAPI(){
+
+		ResponseEventFulAPI response = restTemplate.getForObject("http://api.eventful.com/rest/events/search?app_key=pzZR48qPz4pSzNQN&location=Melbourne", ResponseEventFulAPI.class);
+		System.out.println("page count = " + response.getPageCount());
 	}
 }

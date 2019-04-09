@@ -99,11 +99,11 @@ Y
 +src/main/java/net/codegen/models/Event.java,c\5\c55be7367c220a9ffb1c7c32e0b9b9189d00e5cb
 Z
 *src/main/java/net/codegen/Application.java,a\6\a673dd39a965c37a46e1fdcdc8dac5404273daac
-h
-8src/main/java/net/codegen/models/EventEventBriteAPI.java,b\3\b3f2858e1f169c7434f1f13791202f8ea2079ab5
-k
-;src/main/java/net/codegen/models/ResponseEventBriteAPI.java,8\6\86584f9ed04e30956c9c17c31e87aef2478e63cd
 k
 ;src/main/java/net/codegen/repositories/EventRepository.java,4\5\452bc451514f8f6b6fd421218b7b70a4838e93ff
 o
 ?src/main/java/net/codegen/shedulars/SheduledEventAPIClient.java,a\3\a3ca2c1c28e0194378e000defe050336a19020aa
+T
+$.idea/codeStyles/codeStyleConfig.xml,d\d\dd7b3350c29c49497756c7f32c69a3bed18b1cba
+d
+4src/main/java/net/codegen/services/EventService.java,0\6\0610bf8f756f3e51b197cd831c1a9080a9696b05

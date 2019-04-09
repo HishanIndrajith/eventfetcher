@@ -1,4 +1,4 @@
-package net.codegen.models;
+package net.codegen.models.event_brite_api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -12,14 +12,7 @@ public class LocationEventBriteAPI
 
 	public LocationEventBriteAPI()
 	{
-	}
-
-	public LocationEventBriteAPI( String latitude, String within, String longitude, String address )
-	{
-		this.latitude = latitude;
-		this.within = within;
-		this.longitude = longitude;
-		this.address = address;
+		//Default constructor
 	}
 
 	public String getLatitude()
