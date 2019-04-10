@@ -107,3 +107,15 @@ T
 $.idea/codeStyles/codeStyleConfig.xml,d\d\dd7b3350c29c49497756c7f32c69a3bed18b1cba
 d
 4src/main/java/net/codegen/services/EventService.java,0\6\0610bf8f756f3e51b197cd831c1a9080a9696b05
+x
+Hsrc/main/java/net/codegen/models/event_brite_api/EventEventBriteAPI.java,e\1\e1d85172dad39dc36dc20b9b3beeb800abd5a309
+{
+Ksrc/main/java/net/codegen/models/event_brite_api/LocationEventBriteAPI.java,6\8\68d588c2dffc26767ae07bbb8b6a0b713af75197
+}
+Msrc/main/java/net/codegen/models/event_brite_api/PaginationEventBriteAPI.java,b\3\b3caec7633b62f0ef64af10e2f1227fd48ac42bf
+{
+Ksrc/main/java/net/codegen/models/event_brite_api/ResponseEventBriteAPI.java,1\1\1196fb32a895c6292fae787a2ab5e4d89c5dc87a
+t
+Dsrc/main/java/net/codegen/models/event_ful_api/EventEventFulAPI.java,f\8\f8252f7f181d47cb42bc030b0f33436175c9543a
+w
+Gsrc/main/java/net/codegen/models/event_ful_api/ResponseEventFulAPI.java,9\c\9c1fac51dae8e816b2b2d6f080b701451d939c6e

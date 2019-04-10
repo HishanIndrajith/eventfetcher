@@ -1,5 +1,7 @@
 package net.codegen.models.event_ful_api;
 
+import net.codegen.models.Event;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,119 +9,111 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-//@Entity
-//@Table(name = "event")
-//@XmlRootElement(name="events", namespace="net.codegen" )
-//@XmlAccessorType(XmlAccessType.NONE)
-public class EventEventFulAPI
+@Entity
+@Table(name = "event")
+@XmlRootElement(name="events" )
+@XmlAccessorType(XmlAccessType.NONE)
+public class EventEventFulAPI extends Event
 {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private int eventId;
-//	@XmlAttribute(name="title")
-//	private String name;
-//	@XmlElement(name="url")
-//	private String url;
-//	@XmlElement(name="description")
-//	private String description;
-//	@XmlAttribute(name="start_time")
-//	private Integer startTime;
-//	@XmlElement(name="stop_time")
-//	private String stopTime;
-//	@XmlElement(name="latitude")
-//	private String latitude;
-//	@XmlAttribute(name="longitude")
-//	private String longitude;
-//	@XmlElement(name="venue_address")
-//	private String address;
-//
-//	public void setEventId( int eventId )
-//	{
-//		this.eventId = eventId;
-//	}
-//
-//	public void setName( String name )
-//	{
-//		this.name = name;
-//	}
-//
-//	public void setUrl( String url )
-//	{
-//		this.url = url;
-//	}
-//
-//	public void setDescription( String description )
-//	{
-//		this.description = description;
-//	}
-//
-//	public void setStartTime( Integer startTime )
-//	{
-//		this.startTime = startTime;
-//	}
-//
-//	public void setStopTime( String stopTime )
-//	{
-//		this.stopTime = stopTime;
-//	}
-//
-//	public void setLatitude( String latitude )
-//	{
-//		this.latitude = latitude;
-//	}
-//
-//	public void setLongitude( String longitude )
-//	{
-//		this.longitude = longitude;
-//	}
-//
-//	public void setAddress( String address )
-//	{
-//		this.address = address;
-//	}
-//
-//	public int getEventId()
-//	{
-//		return eventId;
-//	}
-//
-//	public String getName()
-//	{
-//		return name;
-//	}
-//
-//	public String getUrl()
-//	{
-//		return url;
-//	}
-//
-//	public String getDescription()
-//	{
-//		return description;
-//	}
-//
-//	public Integer getStartTime()
-//	{
-//		return startTime;
-//	}
-//
-//	public String getStopTime()
-//	{
-//		return stopTime;
-//	}
-//
-//	public String getLatitude()
-//	{
-//		return latitude;
-//	}
-//
-//	public String getLongitude()
-//	{
-//		return longitude;
-//	}
-//
-//	public String getAddress()
-//	{
-//		return address;
-//	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int eventId;
+	@Column(length = 1000)
+	@XmlElement(name="title")
+	private String name;
+	@XmlElement(name="url")
+	private String url;
+	@Lob
+	@XmlElement(name="description")
+	private String description;
+	@XmlAttribute(name="start_time")
+	private String startDate;
+	@XmlElement(name="stop_time")
+	private String endDate;
+	@XmlElement(name="latitude")
+	private String venueLatitude;
+	@XmlElement(name="longitude")
+	private String venueLongitude;
+	@XmlElement(name="venue_address")
+	private String venueAddress;
+
+	public void setName( String name )
+	{
+		this.name = name;
+	}
+
+	public void setUrl( String url )
+	{
+		this.url = url;
+	}
+
+	public void setDescription( String description )
+	{
+		this.description = description;
+	}
+
+	public void setStartDate( String startDate )
+	{
+		this.startDate = startDate;
+	}
+
+	public void setEndDate( String endDate )
+	{
+		this.endDate = endDate;
+	}
+
+	public void setVenueLatitude( String venueLatitude )
+	{
+		this.venueLatitude = venueLatitude;
+	}
+
+	public void setVenueLongitude( String venueLongitude )
+	{
+		this.venueLongitude = venueLongitude;
+	}
+
+	public void setVenueAddress( String venueAddress )
+	{
+		this.venueAddress = venueAddress;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public String getUrl()
+	{
+		return url;
+	}
+
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public String getStartDate()
+	{
+		return startDate;
+	}
+
+	public String getEndDate()
+	{
+		return endDate;
+	}
+
+	public String getVenueLatitude()
+	{
+		return venueLatitude;
+	}
+
+	public String getVenueLongitude()
+	{
+		return venueLongitude;
+	}
+
+	public String getVenueAddress()
+	{
+		return venueAddress;
+	}
 }
