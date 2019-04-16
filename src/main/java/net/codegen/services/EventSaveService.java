@@ -8,7 +8,7 @@ import net.codegen.repositories.EventRepository;
 import java.util.List;
 
 @Service
-public class EventService
+public class EventSaveService
 {
 	@Autowired
 	private EventRepository eventRepository;

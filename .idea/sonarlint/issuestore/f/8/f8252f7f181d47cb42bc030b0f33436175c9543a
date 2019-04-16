@@ -1,29 +1,4 @@
 
-Ysquid:S2094"BRemove this empty class, write its code or make it an "interface".(ý“çÚ
-bsquid:CommentedOutCodeLinep"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLineR"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLinea"<This block of commented-out lines of code should be removed.(Ú°à¬
-gsquid:CommentedOutCodeLine "<This block of commented-out lines of code should be removed.(ÈŽÙÅýÿÿÿÿ
-bsquid:CommentedOutCodeLine""<This block of commented-out lines of code should be removed.(¢¶üË
-bsquid:CommentedOutCodeLine9"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLinef"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(×É–ý
-bsquid:CommentedOutCodeLineW"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLine4"<This block of commented-out lines of code should be removed.(Ú°à¬
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÖûÛÎþÿÿÿÿ
-bsquid:CommentedOutCodeLine>"<This block of commented-out lines of code should be removed.(Ú°à¬
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ä¤†ýÿÿÿÿ
-bsquid:CommentedOutCodeLineM"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLine\"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLinez"<This block of commented-out lines of code should be removed.(Ú°à¬
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(–‡æÖýÿÿÿÿ
-bsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ü¸¡„
-bsquid:CommentedOutCodeLine/"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(èà¯°
-bsquid:CommentedOutCodeLineC"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(©Íæ¥
-bsquid:CommentedOutCodeLineH"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLine%"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLinek"<This block of commented-out lines of code should be removed.(Ú°à¬
-bsquid:CommentedOutCodeLineu"<This block of commented-out lines of code should be removed.(Ú°à¬
+Dsquid:S1068"(Remove this unused "city" private field.(“øÌà8÷®¦Ò -
+zsquid:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8÷®¦Ò -
+ƒsquid:UselessImportCheck"URemove this unused import 'net.codegen.models.event_brite_api.ResponseEventBriteAPI'.(ŽãÑ‘ùÿÿÿÿ8÷®¦Ò -

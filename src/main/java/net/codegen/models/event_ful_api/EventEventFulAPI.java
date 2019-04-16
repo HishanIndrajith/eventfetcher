@@ -11,31 +11,36 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "event")
-@XmlRootElement(name="events" )
+@XmlRootElement(name = "events")
 @XmlAccessorType(XmlAccessType.NONE)
 public class EventEventFulAPI extends Event
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int eventId;
+	private String city;
 	@Column(length = 1000)
-	@XmlElement(name="title")
+	@XmlElement(name = "title")
 	private String name;
-	@XmlElement(name="url")
+	@XmlElement(name = "url")
 	private String url;
 	@Lob
-	@XmlElement(name="description")
+	@XmlElement(name = "description")
 	private String description;
-	@XmlAttribute(name="start_time")
+	@XmlAttribute(name = "start_time")
 	private String startDate;
-	@XmlElement(name="stop_time")
+	@XmlElement(name = "stop_time")
 	private String endDate;
-	@XmlElement(name="latitude")
+	@XmlElement(name = "latitude")
 	private String venueLatitude;
-	@XmlElement(name="longitude")
+	@XmlElement(name = "longitude")
 	private String venueLongitude;
-	@XmlElement(name="venue_address")
+	@XmlElement(name = "venue_address")
 	private String venueAddress;
+
+	{
+		this.city = ResponseEventFulAPI.getCityIndex() == 0 ? "Melbourne" : "Brisbane";
+	}
 
 	public void setName( String name )
 	{
