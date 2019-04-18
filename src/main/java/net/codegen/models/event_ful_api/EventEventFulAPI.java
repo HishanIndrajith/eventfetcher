@@ -38,13 +38,14 @@ public class EventEventFulAPI extends Event
 	@XmlElement(name = "venue_address")
 	private String venueAddress;
 
-	{
-		this.city = ResponseEventFulAPI.getCityIndex() == 0 ? "Melbourne" : "Brisbane";
-	}
-
 	public void setName( String name )
 	{
 		this.name = name;
+	}
+
+	public void setCity( String city )
+	{
+		this.city = city;
 	}
 
 	public void setUrl( String url )
@@ -120,5 +121,10 @@ public class EventEventFulAPI extends Event
 	public String getVenueAddress()
 	{
 		return venueAddress;
+	}
+
+	public String getCity()
+	{
+		return city;
 	}
 }

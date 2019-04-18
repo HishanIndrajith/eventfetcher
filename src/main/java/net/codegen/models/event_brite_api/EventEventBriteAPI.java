@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.Map;
 
 @Entity
-@Table(name = "event")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EventEventBriteAPI extends Event
 {
@@ -86,7 +85,6 @@ public class EventEventBriteAPI extends Event
 		this.venueLongitude = ( String ) venue.get( "latitude" );
 		Map<String, String> address = ( Map<String, String> ) venue.get( "address" );
 		this.venueAddress = address.get( "localized_address_display" );
-		this.city = ResponseEventBriteAPI.getCityIndex() == 0 ? "Melbourne" : "Brisbane";
 	}
 
 	public String getCity()

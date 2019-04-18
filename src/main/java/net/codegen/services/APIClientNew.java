@@ -10,14 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.*;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Service
-public class APIClient
+public class APIClientNew
 {
 	@Autowired
 	private RestTemplate restTemplate;
@@ -27,9 +28,9 @@ public class APIClient
 	private static final Logger log = LoggerFactory.getLogger( Scheduler.class );
 	private static final String WORD_PARAMETERS = "parameters";
 
-	public List<EventEventBriteAPI> getEventsListFromEventBriteAPI( int cityIndex )
+	@Async
+	public CompletableFuture<List<EventEventBriteAPI>> getEventsListFromEventBriteAPI( String cityName)
 	{
-		String cityName = cityIndex == 0 ? "melbourne" : "brisbane";
 		log.info( "Getting events from EventBriteAPI for city {}",cityName );
 		String authToken = environment.getProperty( "eventapi.eventbrite.token" );
 
@@ -58,17 +59,21 @@ public class APIClient
 			);
 			ResponseEventBriteAPI response = responseEntity.getBody();
 			List<EventEventBriteAPI> nextEventsList = response.getEvents();
-			System.out.println(nextEventsList.get( 0 ).getName());
 			events.addAll( nextEventsList );
 		}
-		return events;
+		events.replaceAll(event -> {
+			event.setCity(cityName);
+			return event;
+		});
+		Scheduler.count++;
+		System.out.println("Progress : "+ Scheduler.count + " / 61" );
+		return CompletableFuture.completedFuture(events);
 	}
 
-	public List<EventEventFulAPI> getEventsListFromEventFulAPI( int cityIndex )
+	@Async
+	public CompletableFuture<List<EventEventFulAPI>> getEventsListFromEventFulAPI( String cityName )
 	{
-
-		String cityName = cityIndex == 0 ? "melbourne" : "brisbane";
-		log.info( "Getting events from EventBriteAPI for city {}",cityName );
+		log.info( "Getting events from EventFulAPI for city {}",cityName );
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept( Collections.singletonList( MediaType.APPLICATION_XML ) );
 		HttpEntity<String> entity = new HttpEntity<>( WORD_PARAMETERS, headers );
@@ -93,6 +98,10 @@ public class APIClient
 			List<EventEventFulAPI> nextEventsList = response.getEvents();
 			events.addAll( nextEventsList );
 		}
-		return events;
+		events.replaceAll(event -> {
+			event.setCity(cityName);
+			return event;
+		});
+		return CompletableFuture.completedFuture(events);
 	}
 }

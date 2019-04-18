@@ -15,9 +15,6 @@ public class ResponseEventFulAPI
 	@XmlElement(name = "event")
 	private List<EventEventFulAPI> events;
 
-	private static int cityIndex;
-	// 0 if Melbourne and 1 if Brisbane
-
 	public void setPageCount( String pageCount )
 	{
 		this.pageCount = pageCount;
@@ -48,17 +45,4 @@ public class ResponseEventFulAPI
 		return events;
 	}
 
-	/*
-	getCityIndex is used to change the city variable of events based on the value of this. need to change the static
-	value using setCityIndex before each request to a new city.
-	*/
-	public static int getCityIndex()
-	{
-		return cityIndex;
-	}
-
-	public static void setCityIndex( int cityIndex )
-	{
-		ResponseEventFulAPI.cityIndex = cityIndex;
-	}
 }

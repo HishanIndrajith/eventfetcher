@@ -1,0 +1,13 @@
+
+Qsquid:S1481H"3Remove this unused "futureEventFul" local variable.(•Æ«ý8ÈƒžÛ¢-
+nsquid:CommentedOutCodeLine^"<This block of commented-out lines of code should be removed.(Óñï…øÿÿÿÿ8ø²©Ï¢-
+[
+squid:S106A"9Replace this use of System.out or System.err by a logger.(¡´ðÿúÿÿÿÿ8åæÍÎ¢-
+V
+squid:S106B"9Replace this use of System.out or System.err by a logger.(‡÷¼Ç8¿²ÏÎ¢-
+`squid:S1854H"BRemove this useless assignment to local variable "futureEventFul".(•Æ«ý8ÈƒžÛ¢-
+fsquid:UselessImportCheck";Remove this unused import 'net.codegen.services.APIClient'.(–Óøˆ8Åá«Ï¢-
+Fsquid:S1148U"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¹‹ŒØ¢-
+Fsquid:S1148Y"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¹‹ŒØ¢-
+isquid:S2142S"FEither re-interrupt this method or rethrow the "InterruptedException".(ÇâÞáøÿÿÿÿ8¹‹ŒØ¢-
+gsquid:S2147W"DCombine this catch with the one at line 83, which has the same body.(Ë¶âœûÿÿÿÿ8¹‹ŒØ¢-
