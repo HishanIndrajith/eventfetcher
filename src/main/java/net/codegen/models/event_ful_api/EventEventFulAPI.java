@@ -27,7 +27,8 @@ public class EventEventFulAPI extends Event
 	@Lob
 	@XmlElement(name = "description")
 	private String description;
-	@XmlAttribute(name = "start_time")
+	private String category;
+	@XmlElement(name = "start_time")
 	private String startDate;
 	@XmlElement(name = "stop_time")
 	private String endDate;
@@ -56,6 +57,11 @@ public class EventEventFulAPI extends Event
 	public void setDescription( String description )
 	{
 		this.description = description;
+	}
+
+	public void setCategory( String category )
+	{
+		this.category = category;
 	}
 
 	public void setStartDate( String startDate )
@@ -96,6 +102,11 @@ public class EventEventFulAPI extends Event
 	public String getDescription()
 	{
 		return description;
+	}
+
+	public String getCategory()
+	{
+		return category;
 	}
 
 	public String getStartDate()

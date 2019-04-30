@@ -129,3 +129,11 @@ S
 #src/main/java/net/codegen/Data.java,1\f\1f3b4344110c6b8a95d3c62d4971275fb0e23ad9
 d
 4src/main/java/net/codegen/services/APIClientNew.java,5\9\5916e40ad8cfaad5dd8d17d96f5aa0b9a6c53d20
+€
+Psrc/main/java/net/codegen/models/event_brite_api/CategoryResponseEventBrite.java,b\2\b26b5e2685a464d7931cc70420f46addfb5211dc
+x
+Hsrc/main/java/net/codegen/models/event_brite_api/CategoryEventBrite.java,6\5\658ae49769deaea44280d1e6e7ac43d54ebe0bfa
+t
+Dsrc/main/java/net/codegen/models/event_ful_api/CategoryEventFul.java,a\2\a2b9b966f2ede45a68be6542660d45f8952a686f
+|
+Lsrc/main/java/net/codegen/models/event_ful_api/CategoryResponseEventFul.java,c\0\c0ef5008586e6064477857f67f08a71f933c549d

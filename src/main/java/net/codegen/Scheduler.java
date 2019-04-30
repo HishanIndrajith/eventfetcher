@@ -2,17 +2,17 @@ package net.codegen;
 
 import net.codegen.models.Event;
 import net.codegen.models.event_brite_api.EventEventBriteAPI;
+import net.codegen.models.event_ful_api.CategoryEventFul;
 import net.codegen.models.event_ful_api.EventEventFulAPI;
-import net.codegen.services.APIClient;
 import net.codegen.services.APIClientNew;
 import net.codegen.services.CityListFetcher;
 import net.codegen.services.EventSaveService;
+import net.codegen.models.event_brite_api.CategoryEventBrite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -60,16 +60,21 @@ public class Scheduler
 	"0 0 10 1 * *" - 10th hour of first day of each month
 	*/
 	@Scheduled(cron = "* * * * * *")
-	public void reportCurrentTime()
+	public void doSheduledTask()
 	{
 		log.info( "starting" );
 		List<String> cityList = cityListFetcher.getRequiredCityList();
 
+		List<CategoryEventBrite> categoriesEventBrite = apiClient.getCatagotyListmEventBriteAPI();
+		for ( CategoryEventBrite categoryEventBrite : categoriesEventBrite )
+			System.out.println(categoryEventBrite.getId()+" - "+ categoryEventBrite.getName());
+		List<CategoryEventFul> categoriesEventFul = apiClient.getCatagotyListmEventFulAPI();
+		for ( CategoryEventFul categoryEventFul : categoriesEventFul )
+			System.out.println( categoryEventFul.getName());
 
-
-		for ( String cityName : cityList ){
-			CompletableFuture<List<EventEventBriteAPI>> futureEventBrite = apiClient.getEventsListFromEventBriteAPI( cityName);
-			CompletableFuture<List<EventEventFulAPI>> futureEventFul= apiClient.getEventsListFromEventFulAPI( cityName);
+		for ( String cityName : cityList){
+			CompletableFuture<List<EventEventBriteAPI>> futureEventBrite = apiClient.getEventsListFromEventBriteAPI( cityName,categoriesEventBrite);
+			CompletableFuture<List<EventEventFulAPI>> futureEventFul= apiClient.getEventsListFromEventFulAPI( cityName,categoriesEventFul);
 			compatibleFutureListEventBriteAPI.add( futureEventBrite );
 			compatibleFutureListEventFulAPI.add( futureEventFul );
 		}

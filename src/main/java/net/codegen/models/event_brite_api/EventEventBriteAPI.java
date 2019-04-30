@@ -19,6 +19,7 @@ public class EventEventBriteAPI extends Event
 	private String name;
 	@Lob
 	private String description;
+	private String category;
 	private String url;
 	private String startDate; //UTC
 	private String endDate;  //UTC
@@ -54,6 +55,13 @@ public class EventEventBriteAPI extends Event
 	public void setDescription( Map<String, Object> description )
 	{
 		this.description = ( String ) description.get( "text" );
+	}
+
+	@SuppressWarnings("unchecked")
+	@JsonProperty("category_id")
+	public void setCategory( String category )
+	{
+		this.category = category;
 	}
 
 	@SuppressWarnings("unchecked")
