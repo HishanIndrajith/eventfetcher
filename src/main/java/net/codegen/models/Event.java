@@ -1,6 +1,5 @@
 package net.codegen.models;
 
-
 import javax.persistence.*;
 
 @Entity

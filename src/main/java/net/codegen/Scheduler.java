@@ -1,118 +1,88 @@
 package net.codegen;
 
-import net.codegen.models.Event;
-import net.codegen.models.event_brite_api.EventEventBriteAPI;
-import net.codegen.models.event_ful_api.CategoryEventFul;
-import net.codegen.models.event_ful_api.EventEventFulAPI;
-import net.codegen.services.APIClientNew;
-import net.codegen.services.CityListFetcher;
-import net.codegen.services.EventSaveService;
-import net.codegen.models.event_brite_api.CategoryEventBrite;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+
+import net.codegen.models.Event;
+import net.codegen.models.event_brite_api.CategoryEventBrite;
+import net.codegen.models.event_brite_api.EventEventBriteAPI;
+import net.codegen.services.APIClient;
+import net.codegen.services.CityListFetcher;
+import net.codegen.services.EventSaveService;
 
 @Component
 public class Scheduler
 {
-	@Autowired
-	private EventSaveService eventSaveService;
-	@Autowired
-	private APIClientNew apiClient;
-	@Autowired
-	private CityListFetcher cityListFetcher;
-
-	//Full event List for a single save operation
-	private static List<Event> eventList = null;
-	List <CompletableFuture<List<EventEventBriteAPI>>> compatibleFutureListEventBriteAPI = new ArrayList<>(  );
-	List <CompletableFuture<List<EventEventFulAPI>>> compatibleFutureListEventFulAPI = new ArrayList<>(  );
-	public static int count = 0;
-
-	// static method to create instance of Singleton class
-	//Singleton pattern used for eventlist as same object can be used again and again.
-	private static List<Event> getEventList()
-	{
-		if ( eventList == null )
-			eventList = new ArrayList<>();
-		return eventList;
-	}
-
+	// Logger instance
 	private static final Logger log = LoggerFactory.getLogger( Scheduler.class );
+	// Initializing events array List
+	private static List<Event> eventList;
 
 	static
 	{
-		//implement the array list
-		eventList = getEventList();
+		// implement the array list
+		eventList = new ArrayList<>();
 	}
 
+	// Injecting the required services
+	@Autowired
+	private EventSaveService eventSaveService;
+	@Autowired
+	private APIClient apiClient;
+	@Autowired
+	private CityListFetcher cityListFetcher;
+
 	/*
-	https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html
-	The pattern is a list of six single space-separated fields: representing second, minute, hour, day, month, weekday
-	Cron Sequences used
-	"0 * * * * *" - 0th second of each minute
-	"0 0 10 * * *" - 10th hour of each day
-	"0 0 10 1 * *" - 10th hour of first day of each month
-	*/
+	 * https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html The pattern is a list of
+	 * six single space-separated fields: representing second, minute, hour, day, month, weekday Cron Sequences used "0 * * * * *" - 0th second of each
+	 * minute "0 0 10 * * *" - 10th hour of each day "0 0 10 1 * *" - 10th hour of first day of each month
+	 */
 	@Scheduled(cron = "* * * * * *")
 	public void doSheduledTask()
 	{
-		log.info( "starting" );
+		log.info( "starting the scheduled task" );
+		// Retrieve the list of cities from the json file and assign to an ArrayList
 		List<String> cityList = cityListFetcher.getRequiredCityList();
-
+		// Retrieve the Event category list from the API - EventBriteAPI, and assign to an ArrayList
 		List<CategoryEventBrite> categoriesEventBrite = apiClient.getCatagotyListmEventBriteAPI();
-		for ( CategoryEventBrite categoryEventBrite : categoriesEventBrite )
-			System.out.println(categoryEventBrite.getId()+" - "+ categoryEventBrite.getName());
-		List<CategoryEventFul> categoriesEventFul = apiClient.getCatagotyListmEventFulAPI();
-		for ( CategoryEventFul categoryEventFul : categoriesEventFul )
-			System.out.println( categoryEventFul.getName());
 
-		for ( String cityName : cityList){
-			CompletableFuture<List<EventEventBriteAPI>> futureEventBrite = apiClient.getEventsListFromEventBriteAPI( cityName,categoriesEventBrite);
-			CompletableFuture<List<EventEventFulAPI>> futureEventFul= apiClient.getEventsListFromEventFulAPI( cityName,categoriesEventFul);
-			compatibleFutureListEventBriteAPI.add( futureEventBrite );
-			compatibleFutureListEventFulAPI.add( futureEventFul );
-		}
-		for ( int i =0;i<cityList.size();i++ ){
-			compatibleFutureListEventBriteAPI.get(i).join();
-			compatibleFutureListEventFulAPI.get(i).join();
-		}
-		for ( int i =0;i<cityList.size();i++ ){
-			try
+		if ( !cityList.isEmpty() && !categoriesEventBrite.isEmpty() )
+		{
+			// Iterate the cities
+			for ( String cityName : cityList )
 			{
-				eventList.addAll( compatibleFutureListEventBriteAPI.get(i).get());
-				eventList.addAll( compatibleFutureListEventFulAPI.get(i).get());
-			}
-			catch ( InterruptedException e )
-			{
-				e.printStackTrace();
-			}
-			catch ( ExecutionException e )
-			{
-				e.printStackTrace();
+				// Retrieve the EventBrite API event list for the city by giving city name and category list, and assign to an ArrayList
+				List<EventEventBriteAPI> eventEventBrite = apiClient.getEventsListFromEventBriteAPI( cityName,
+						categoriesEventBrite );
+				// Add the EventBrite API event list to the parent event list.
+				eventList.addAll( eventEventBrite );
+				if ( !eventList.isEmpty() )
+				{
+					// Save the event list for the city in database
+					if ( eventSaveService.insertEvent( eventList ) )
+						log.info( "Successfully updated the database for city {}", cityName );
+					else
+						log.error( "Failed to save to database for city {}", cityName );
+					// Clear the event list for next city.
+					eventList.clear();
+				}
+				else
+				{
+					log.error( "No data to save to database for city {}", cityName );
+				}
 			}
 		}
-		eventSaveService.insertEvent( eventList );
-		//need to optimize above using lambda functions.
+		else
+		{
+			log.error( "City List not available or Category list cannot be retrieved" );
+		}
 
-//		List<EventEventBriteAPI> eventListFromEventBriteAPIForMelbourne = apiClient.getEventsListFromEventBriteAPI( 0 );
-//		List<EventEventBriteAPI> eventListFromEventBriteAPIForBrisbane = apiClient.getEventsListFromEventBriteAPI( 1 );
-//		List<EventEventFulAPI> eventsListFromEventFulAPIAPIForMelbourne = apiClient.getEventsListFromEventFulAPI( 0 );
-//		List<EventEventFulAPI> eventsListFromEventFulAPIAPIForBrisbane = apiClient.getEventsListFromEventFulAPI( 1 );
-//		eventList.addAll( eventListFromEventBriteAPIForMelbourne );
-//		eventList.addAll( eventListFromEventBriteAPIForBrisbane );
-//		eventList.addAll( eventsListFromEventFulAPIAPIForMelbourne );
-//		eventList.addAll( eventsListFromEventFulAPIAPIForBrisbane );
-//		eventSaveService.insertEvent( eventList );
-		log.info( "Successfully updated the database" );
 	}
-
-
-
 
 }

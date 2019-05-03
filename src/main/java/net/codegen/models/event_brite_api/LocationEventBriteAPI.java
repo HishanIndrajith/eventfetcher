@@ -12,7 +12,7 @@ public class LocationEventBriteAPI
 
 	public LocationEventBriteAPI()
 	{
-		//Default constructor
+		// Default constructor
 	}
 
 	public String getLatitude()

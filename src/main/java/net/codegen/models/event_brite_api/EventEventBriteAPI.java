@@ -90,7 +90,7 @@ public class EventEventBriteAPI extends Event
 	public void setVenue( Map<String, Object> venue )
 	{
 		this.venueLatitude = ( String ) venue.get( "latitude" );
-		this.venueLongitude = ( String ) venue.get( "latitude" );
+		this.venueLongitude = ( String ) venue.get( "longitude" );
 		Map<String, String> address = ( Map<String, String> ) venue.get( "address" );
 		this.venueAddress = address.get( "localized_address_display" );
 	}
@@ -108,6 +108,11 @@ public class EventEventBriteAPI extends Event
 	public String getDescription()
 	{
 		return description;
+	}
+
+	public String getCategory()
+	{
+		return category;
 	}
 
 	public String getUrl()

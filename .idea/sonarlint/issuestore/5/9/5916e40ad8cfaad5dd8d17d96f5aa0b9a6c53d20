@@ -1,6 +1,0 @@
-
-V
-squid:S106K"9Replace this use of System.out or System.err by a logger.(œ­ç8Óæ÷Â¦-
-Ysquid:S2696J"6Make the enclosing method "static" or remove this set.(ëİù”ùÿÿÿÿ8Óæ÷Â¦-
-Osquid:S1481"+Remove this unused "entity" local variable.(ĞêÓåùÿÿÿÿ8¾£ïÅ¦-
-^squid:S1854":Remove this useless assignment to local variable "entity".(ĞêÓåùÿÿÿÿ8¾£ïÅ¦-

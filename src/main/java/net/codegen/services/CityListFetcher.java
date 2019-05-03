@@ -1,35 +1,63 @@
 package net.codegen.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.boot.json.JacksonJsonParser;
-import org.springframework.boot.json.JsonParser;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+/**
+ * This class Fetch the list of cities from the cities.json file using jackson databind
+ */
 
 @Service
 public class CityListFetcher
 {
-	JsonParser jsonParser = new JacksonJsonParser();
-	private List<String> cityList;
 	private static final String CITIES_FILE_NAME = "cities.json";
+	private static final Logger log = LoggerFactory.getLogger( CityListFetcher.class );
 
 	public List<String> getRequiredCityList()
 	{
+		List<String> cityList = null;
+		InputStream input = null;
 		try
 		{
 			ClassLoader classLoader = getClass().getClassLoader();
 			ObjectMapper objectMapper = new ObjectMapper();
-			InputStream input = classLoader.getResourceAsStream( CITIES_FILE_NAME );
+			// Get input stream for the json file
+			input = classLoader.getResourceAsStream( CITIES_FILE_NAME );
+			// Get the city list
 			cityList = objectMapper.readValue( input, List.class );
 		}
 		catch ( IOException e )
 		{
-			e.printStackTrace();
+			log.error( "Exception in city list fetching {}", e );
+
+		}
+		finally
+		{
+			if ( input != null )
+			{
+				try
+				{
+					input.close();
+				}
+				catch ( IOException e )
+				{
+					log.error( "{}", e );
+				}
+			}
 		}
 
-		return cityList;
+		if ( cityList == null )
+			return Collections.emptyList();
+		else
+			return cityList;
 	}
 
 }
