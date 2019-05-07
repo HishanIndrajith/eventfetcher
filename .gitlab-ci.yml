@@ -1,0 +1,32 @@
+image: maven:3.5.2-jdk-8
+
+variables:
+  PROJECT_BASE_DIR: "/builds/sense/crawler/eventfetcher"
+
+stages:
+- compile
+- package
+
+compiling:
+  stage: compile
+  only:
+  - master
+  artifacts:
+    expire_in: 5 mins
+    paths:
+    - ${PROJECT_BASE_DIR}/target
+  script:
+  - mvn clean compile
+
+packaging:
+  stage: package
+  dependencies:
+  - compiling
+  only:
+  - master
+  artifacts:
+    expire_in: 5 mins
+    paths:
+    - ${PROJECT_BASE_DIR}/target
+  script:
+  - mvn package -DskipTests=true
