@@ -1,5 +1,7 @@
 package net.codegen.services;
 
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -43,6 +45,8 @@ public class APIClient
 	private RestTemplate restTemplate;
 	@Autowired
 	private Environment environment;
+	@Autowired
+	private EventsService eventsService;
 	/*
 	 * Date variable that keeps the starting time of an unit hour. This is assigned with current time when starting the application, 1000 api call limit
 	 * reached or 1 hour has passed from the time in this variable.
@@ -84,6 +88,7 @@ public class APIClient
 				int pageCount = initialResponse.getPagination().getPageCount();
 				// Get the list of events from initial response. The next events from other pages are added to this list.
 				List<EventEventBriteAPI> events = initialResponse.getEvents();
+
 				// Iterate to get all events from all pages.
 				for ( int i = 1; i < pageCount; i++ )
 				{
@@ -105,21 +110,15 @@ public class APIClient
 					// Add event list for the page to the main array list of events for the city and category
 					events.addAll( nextEventsList );
 				}
-				// Add the city name and the category name to the events
-				events.replaceAll( event -> {
-					event.setCity( cityName );
-					event.setCategory( category.getName() );
-					return event;
-				} );
 				// Add the events for the category to the main list
-				eventsForGivenCity.addAll( events );
+				customAddAllEventsToAList( eventsForGivenCity, events, cityName, category );
 			}
+			log.info( "Getting events from EventBriteAPI for city {} Successful", cityName );
 		}
 		catch ( RestClientException e )
 		{
 			log.error( "Error in Rest Client in getting data from API {}", e );
 		}
-		log.info( "Getting events from EventBriteAPI for city {} Successful", cityName );
 		return eventsForGivenCity;
 	}
 
@@ -283,6 +282,30 @@ public class APIClient
 			// Then a new unit hour is started by making the call count and startTime default values.
 			callCount = 0;
 			startTime = currentTime;
+
+		}
+	}
+
+	// This is because addAll in ArrayList cannot be used as updatedDate must be compared event wise before adding.
+	private void customAddAllEventsToAList( List<EventEventBriteAPI> mainList, List<EventEventBriteAPI> listToAdd,
+			String cityName, CategoryEventBrite category )
+	{
+		String timeCityAndCategoryUpdatedEarly = eventsService.getLastUpdatedTime( category.getName(), cityName );
+		Instant instantCityAndCategoryUpdatedEarly = Instant.parse( timeCityAndCategoryUpdatedEarly );
+		String currentTime = DateTimeFormatter.ISO_INSTANT.format( Instant.now() );
+		for ( EventEventBriteAPI event : listToAdd )
+		{
+			String publishedDate = event.getPublishedDate();
+			if(publishedDate!=null){
+				Instant eventPublishedTime = Instant.parse( event.getPublishedDate() );
+				if ( instantCityAndCategoryUpdatedEarly.isBefore( eventPublishedTime ) )
+				{
+					event.setCity( cityName );
+					event.setCategory( category.getName() );
+					event.setUpdatedTime( currentTime );
+					mainList.add( event );
+				}
+			}
 
 		}
 	}

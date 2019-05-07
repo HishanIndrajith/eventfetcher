@@ -1,5 +1,0 @@
-
-Ssquid:S1191"5Use classes from the Java API instead of Sun classes.(Û•‚€8éšÊá§-
-~squid:UselessImportCheck"SRemove this unused import 'com.sun.xml.internal.ws.policy.privateutil.PolicyUtils'.(Û•‚€8éšÊá§-
-Jsquid:S1068",Remove this unused "cityList" private field.(ßÂù“8¢‡»á§-
-jsquid:HiddenFieldCheck"<Rename "cityList" which hides the field declared at line 18.(Œ™ Äùÿÿÿÿ8„ÁÑÁ§-

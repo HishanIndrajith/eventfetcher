@@ -14,7 +14,7 @@ import net.codegen.models.event_brite_api.CategoryEventBrite;
 import net.codegen.models.event_brite_api.EventEventBriteAPI;
 import net.codegen.services.APIClient;
 import net.codegen.services.CityListFetcher;
-import net.codegen.services.EventSaveService;
+import net.codegen.services.EventsService;
 
 @Component
 public class Scheduler
@@ -32,7 +32,7 @@ public class Scheduler
 
 	// Injecting the required services
 	@Autowired
-	private EventSaveService eventSaveService;
+	private EventsService eventsService;
 	@Autowired
 	private APIClient apiClient;
 	@Autowired
@@ -43,12 +43,13 @@ public class Scheduler
 	 * six single space-separated fields: representing second, minute, hour, day, month, weekday Cron Sequences used "0 * * * * *" - 0th second of each
 	 * minute "0 0 10 * * *" - 10th hour of each day "0 0 10 1 * *" - 10th hour of first day of each month
 	 */
-	@Scheduled(cron = "* * * * * *")
+	@Scheduled(cron = "0 34 15 * * *")
 	public void doSheduledTask()
 	{
 		log.info( "starting the scheduled task" );
 		// Retrieve the list of cities from the json file and assign to an ArrayList
 		List<String> cityList = cityListFetcher.getRequiredCityList();
+
 		// Retrieve the Event category list from the API - EventBriteAPI, and assign to an ArrayList
 		List<CategoryEventBrite> categoriesEventBrite = apiClient.getCatagotyListmEventBriteAPI();
 
@@ -65,7 +66,7 @@ public class Scheduler
 				if ( !eventList.isEmpty() )
 				{
 					// Save the event list for the city in database
-					if ( eventSaveService.insertEvent( eventList ) )
+					if ( eventsService.insertEventList( eventList ) )
 						log.info( "Successfully updated the database for city {}", cityName );
 					else
 						log.error( "Failed to save to database for city {}", cityName );

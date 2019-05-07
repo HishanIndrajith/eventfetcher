@@ -99,8 +99,6 @@ Y
 +src/main/java/net/codegen/models/Event.java,c\5\c55be7367c220a9ffb1c7c32e0b9b9189d00e5cb
 Z
 *src/main/java/net/codegen/Application.java,a\6\a673dd39a965c37a46e1fdcdc8dac5404273daac
-k
-;src/main/java/net/codegen/repositories/EventRepository.java,4\5\452bc451514f8f6b6fd421218b7b70a4838e93ff
 T
 $.idea/codeStyles/codeStyleConfig.xml,d\d\dd7b3350c29c49497756c7f32c69a3bed18b1cba
 x
@@ -117,8 +115,6 @@ w
 Gsrc/main/java/net/codegen/models/event_ful_api/ResponseEventFulAPI.java,9\c\9c1fac51dae8e816b2b2d6f080b701451d939c6e
 a
 1src/main/java/net/codegen/services/APIClient.java,1\c\1cddafa897854b8105265c7ec8782df39c557738
-h
-8src/main/java/net/codegen/services/EventSaveService.java,6\6\6654bfeba4fe8638eaa0dce5a75c92e4ae452894
 X
 (src/main/java/net/codegen/Scheduler.java,9\d\9da51fb0a422d12a5739f2a221cd5d943de8d0d9
 N
@@ -135,3 +131,7 @@ Dsrc/main/java/net/codegen/models/event_ful_api/CategoryEventFul.java,a\2\a2b9b
 Lsrc/main/java/net/codegen/models/event_ful_api/CategoryResponseEventFul.java,c\0\c0ef5008586e6064477857f67f08a71f933c549d
 O
 src/main/resources/cities2.json,1\7\172a4d72e56fe173b553b942bb1b16d67df8c3e6
+l
+<src/main/java/net/codegen/repositories/EventsRepository.java,f\e\fed5613699fdead26dc3715030a5d13b51010d97
+e
+5src/main/java/net/codegen/services/EventsService.java,1\8\18b5cce977a7da4a38a537130a8bd7ef19e542a3

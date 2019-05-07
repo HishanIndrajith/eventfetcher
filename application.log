@@ -1,0 +1,50 @@
+2019-05-07 15:33:02.092  INFO 3952 --- [main] net.codegen.Application                  : Starting Application on HISHAN-W10DT with PID 3952 (started by hishan in C:\Users\hishan\Documents\Crawling Project\eventfetcher)
+2019-05-07 15:33:02.097  INFO 3952 --- [main] net.codegen.Application                  : No active profile set, falling back to default profiles: default
+2019-05-07 15:33:02.167  INFO 3952 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@6b419da: startup date [Tue May 07 15:33:02 IST 2019]; root of context hierarchy
+2019-05-07 15:33:03.895  INFO 3952 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-07 15:33:04.240  INFO 3952 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-07 15:33:04.300  INFO 3952 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2019-05-07 15:33:04.328  INFO 3952 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-05-07 15:33:04.424  INFO 3952 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2019-05-07 15:33:04.426  INFO 3952 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-05-07 15:33:04.476  INFO 3952 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2019-05-07 15:33:04.645  INFO 3952 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-05-07 15:33:04.952  WARN 3952 --- [main] org.hibernate.cfg.AnnotationBinder       : HHH000139: Illegal use of @Table in a subclass of a SINGLE_TABLE hierarchy: net.codegen.models.event_ful_api.EventEventFulAPI
+2019-05-07 15:33:05.395  INFO 3952 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-05-07 15:33:06.415  INFO 3952 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-05-07 15:33:06.418  INFO 3952 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-05-07 15:33:06.424  INFO 3952 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2019-05-07 15:33:06.440  INFO 3952 --- [main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2019-05-07 15:33:06.453  INFO 3952 --- [main] net.codegen.Application                  : Started Application in 4.853 seconds (JVM running for 5.462)
+2019-05-07 15:33:52.506  INFO 11072 --- [main] net.codegen.Application                  : Starting Application on HISHAN-W10DT with PID 11072 (started by hishan in C:\Users\hishan\Documents\Crawling Project\eventfetcher)
+2019-05-07 15:33:52.510  INFO 11072 --- [main] net.codegen.Application                  : No active profile set, falling back to default profiles: default
+2019-05-07 15:33:52.576  INFO 11072 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4034c28c: startup date [Tue May 07 15:33:52 IST 2019]; root of context hierarchy
+2019-05-07 15:33:54.410  INFO 11072 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-07 15:33:54.756  INFO 11072 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-07 15:33:54.816  INFO 11072 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2019-05-07 15:33:54.848  INFO 11072 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-05-07 15:33:54.944  INFO 11072 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2019-05-07 15:33:54.947  INFO 11072 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-05-07 15:33:54.998  INFO 11072 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2019-05-07 15:33:55.168  INFO 11072 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-05-07 15:33:55.473  WARN 11072 --- [main] org.hibernate.cfg.AnnotationBinder       : HHH000139: Illegal use of @Table in a subclass of a SINGLE_TABLE hierarchy: net.codegen.models.event_ful_api.EventEventFulAPI
+2019-05-07 15:33:55.911  INFO 11072 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-05-07 15:33:56.978  INFO 11072 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-05-07 15:33:56.981  INFO 11072 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-05-07 15:33:56.990  INFO 11072 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2019-05-07 15:33:57.009  INFO 11072 --- [main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2019-05-07 15:33:57.021  INFO 11072 --- [main] net.codegen.Application                  : Started Application in 5.029 seconds (JVM running for 5.626)
+2019-05-07 15:34:00.002  INFO 11072 --- [pool-1-thread-1] net.codegen.Scheduler                    : starting the scheduled task
+2019-05-07 15:34:01.810  INFO 11072 --- [pool-1-thread-1] net.codegen.services.APIClient           : Getting events from EventBriteAPI for city ROTORUA
+2019-05-07 15:34:42.398  INFO 11072 --- [pool-1-thread-1] net.codegen.services.APIClient           : Getting events from EventBriteAPI for city ROTORUA Successful
+2019-05-07 15:34:42.489  INFO 11072 --- [pool-1-thread-1] net.codegen.Scheduler                    : Successfully updated the database for city ROTORUA
+2019-05-07 15:34:42.489  INFO 11072 --- [pool-1-thread-1] net.codegen.services.APIClient           : Getting events from EventBriteAPI for city AYERS ROCK
+2019-05-07 15:35:20.046  INFO 11072 --- [pool-1-thread-1] net.codegen.services.APIClient           : Getting events from EventBriteAPI for city AYERS ROCK Successful
+2019-05-07 15:35:20.047 ERROR 11072 --- [pool-1-thread-1] net.codegen.Scheduler                    : No data to save to database for city AYERS ROCK
+2019-05-07 15:35:20.047  INFO 11072 --- [pool-1-thread-1] net.codegen.services.APIClient           : Getting events from EventBriteAPI for city ABU DHABI
+2019-05-07 15:36:02.286  INFO 11072 --- [pool-1-thread-1] net.codegen.services.APIClient           : Getting events from EventBriteAPI for city ABU DHABI Successful
+2019-05-07 15:36:02.317  INFO 11072 --- [pool-1-thread-1] net.codegen.Scheduler                    : Successfully updated the database for city ABU DHABI

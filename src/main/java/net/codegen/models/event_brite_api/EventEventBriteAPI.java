@@ -1,6 +1,7 @@
 package net.codegen.models.event_brite_api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import net.codegen.models.Event;
 
@@ -27,6 +28,10 @@ public class EventEventBriteAPI extends Event
 	private String venueLongitude;
 	@Column(length = 2000)
 	private String venueAddress;
+	@JsonInclude()
+	@Transient
+	private String publishedDate;
+	private String updatedTime;
 
 	public EventEventBriteAPI()
 	{
@@ -95,6 +100,18 @@ public class EventEventBriteAPI extends Event
 		this.venueAddress = address.get( "localized_address_display" );
 	}
 
+	@SuppressWarnings("unchecked")
+	@JsonProperty("published")
+	public void setPublishedDate( String publishedDate )
+	{
+		this.publishedDate = publishedDate;
+	}
+
+	public void setUpdatedTime( String updatedTime )
+	{
+		this.updatedTime = updatedTime;
+	}
+
 	public String getCity()
 	{
 		return city;
@@ -150,4 +167,13 @@ public class EventEventBriteAPI extends Event
 		return eventId;
 	}
 
+	public String getPublishedDate()
+	{
+		return publishedDate;
+	}
+
+	public String getUpdatedTime()
+	{
+		return updatedTime;
+	}
 }
