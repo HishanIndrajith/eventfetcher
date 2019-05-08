@@ -135,3 +135,5 @@ l
 <src/main/java/net/codegen/repositories/EventsRepository.java,f\e\fed5613699fdead26dc3715030a5d13b51010d97
 e
 5src/main/java/net/codegen/services/EventsService.java,1\8\18b5cce977a7da4a38a537130a8bd7ef19e542a3
+>
+.gitlab-ci.yml,5\8\587d266bb27a4dc3022bbed44dfa19849df3044c

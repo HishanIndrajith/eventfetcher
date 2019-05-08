@@ -1,32 +1,25 @@
-image: maven:3.5.2-jdk-8
+image: maven:latest
 
 variables:
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
   PROJECT_BASE_DIR: "/builds/sense/crawler/eventfetcher"
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
 
 stages:
 - compile
 - package
 
-compiling:
+compile:
   stage: compile
-  only:
-  - master
-  artifacts:
-    expire_in: 5 mins
-    paths:
-    - ${PROJECT_BASE_DIR}/target
   script:
-  - mvn clean compile
+    - mvn $MAVEN_CLI_OPTS compile
 
-packaging:
+package:
   stage: package
-  dependencies:
-  - compiling
-  only:
-  - master
-  artifacts:
-    expire_in: 5 mins
-    paths:
-    - ${PROJECT_BASE_DIR}/target
   script:
-  - mvn package -DskipTests=true
+    - mvn $MAVEN_CLI_OPTS package
