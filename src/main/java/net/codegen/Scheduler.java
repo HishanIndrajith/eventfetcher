@@ -43,7 +43,7 @@ public class Scheduler
 	 * six single space-separated fields: representing second, minute, hour, day, month, weekday Cron Sequences used "0 * * * * *" - 0th second of each
 	 * minute "0 0 10 * * *" - 10th hour of each day "0 0 10 1 * *" - 10th hour of first day of each month
 	 */
-	@Scheduled(cron = "0 34 15 * * *")
+	@Scheduled(cron = "0 35 10 * * *")
 	public void doSheduledTask()
 	{
 		log.info( "starting the scheduled task" );
